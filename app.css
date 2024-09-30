@@ -1,0 +1,653 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Light Mode Color Scheme */
+/* :root {
+      --background-color: #f5f5f5;
+      --text-color: #333;
+      --primary-color: #0077ff;
+      --secondary-color: #ff00ff;
+      --link-hover-color: #ffab40;
+      --nav-background: #ffffff;
+      --border-color: #e0e0e0;
+      --header-background: rgba(255, 255, 255, 0.9);
+  } */
+
+/* Dark Mode Color Scheme */
+:root {
+  --background-color: #1a1a1a;
+  --text-color: #f5f5f5;
+  --primary-color: #ff4500;
+  --secondary-color: #ff007f;
+  --advance-color: #660066;
+  --link-hover-color: #00e6e6;
+  --header-background: rgba(0, 0, 0, 0.8);
+  --nav-background: rgba(0, 0, 0, 0.8);
+  --border-color: #444444;
+}
+
+/* General Reset and Base Styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header Styles */
+header {
+  width: 100%;
+  background-color: var(--header-background);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure header stays on top */
+}
+
+header .container {
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 10px 30px;
+}
+
+/* Navigation Styles */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--text-color);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.logo a {
+  text-decoration: none;
+  animation: color-change 7s infinite;
+}
+
+.nav-items ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-items ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  transition: color 0.4s ease-in-out;
+}
+
+.nav-items ul li a:hover {
+  color: var(--link-hover-color);
+}
+
+.nav-items ul li::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  display: block;
+  margin: auto;
+  transition: width 0.5s ease-in-out;
+}
+
+.nav-items ul li:hover::after {
+  width: 100%;
+}
+
+.toggle-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.toggle-btn div {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Mobile Menu */
+.nav-items-mobile {
+  display: none;
+  overflow: hidden;
+}
+
+.nav-items-mobile.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-items-mobile ul {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 17px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.nav-items-mobile.show ul {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-items-mobile ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  transition: color 0.4s ease-in-out;
+}
+
+.nav-items-mobile ul li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .toggle-btn {
+    display: flex;
+  }
+
+  .nav-items {
+    display: none;
+  }
+
+  .toggle-btn.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .toggle-btn.open div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .toggle-btn.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .image {
+    display: none;
+  }
+
+  .info {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+/* Main Section Styles */
+.main {
+  width: 100%;
+  min-height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Typing Animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--text-color);
+  }
+}
+
+/* Infinite Color Change Animation */
+@keyframes color-change {
+  0% {
+    color: var(--primary-color);
+  }
+  20% {
+    color: var(--secondary-color);
+  }
+  40% {
+    color: var(--link-hover-color);
+  }
+  60% {
+    color: var(--advance-color);
+  }
+  80% {
+    color: var(--text-color);
+  }
+  100% {
+    color: var(--primary-color);
+  }
+}
+@keyframes background-color-change {
+  0% {
+    background-color: var(--primary-color);
+  }
+  20% {
+    background-color: var(--secondary-color);
+  }
+  40% {
+    background-color: var(--link-hover-color);
+  }
+  60% {
+    background-color: var(--advance-color);
+  }
+  80% {
+    background-color: var(--text-color);
+  }
+  100% {
+    background-color: var(--primary-color);
+  }
+}
+
+.info {
+  width: 50%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Add animation for text color */
+  animation: color-change 7s infinite;
+}
+
+.info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  /* Typing animation effect */
+  overflow: hidden; /* Ensures the text is hidden initially */
+  white-space: nowrap; /* Keeps the text on a single line */
+  border-right: 0.15em solid var(--text-color); /* Cursor */
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+.info p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  /* Optional: if you want typing animation for the paragraph too */
+  overflow: hidden; /* Ensures the text is hidden initially */
+  white-space: nowrap; /* Keeps the text on a single line */
+  border-right: 0.15em solid var(--text-color); /* Cursor */
+  animation: typing 6s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+.image {
+  width: 50%;
+  max-width: 500px;
+  height: auto;
+  background: url("./image-1.png") no-repeat center center;
+  background-size: cover;
+  border-radius: 10px;
+  filter: grayscale(100%) /* Fully desaturate the image to remove color */
+    contrast(150%) /* Increase contrast for a more dramatic effect */
+    brightness(70%) /* Reduce brightness for a darker appearance */ blur(2px)
+    /* Add a slight blur for an out-of-focus effect */ hue-rotate(-30deg)
+    /* Slightly shift hue for a colder tone */ sepia(30%); /* Add a sepia filter for an aged look */
+  transition: filter 0.6s ease,
+    /* Smooth transition for filter changes */ transform 0.6s ease; /* Smooth transition for transform changes */
+}
+
+.image:hover {
+  filter: grayscale(100%) contrast(200%) brightness(50%) blur(4px)
+    hue-rotate(-60deg) sepia(50%);
+
+  /* Additional transformations on hover for a more dramatic effect */
+  transform: scale(1.05) rotate(2deg); /* Slightly scale and rotate the image */
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Social Media Icons */
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between icons */
+  margin-bottom: 20px; /* Space below the icons */
+}
+
+.social-icon {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.social-icon:hover {
+  color: var(--link-hover-color);
+  animation: color-change 7s infinite;
+}
+
+.learn-more-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  color: #fff;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  text-decoration: none;
+  border-radius: 50px; /* Rounded corners for a pill shape */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learn-more-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(30deg);
+  transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.learn-more-btn:hover::before {
+  transform: rotate(60deg);
+}
+
+.social-media {
+  margin-top: 12px;
+}
+
+/* Renaissance Art Inspired About Section */
+/* About Section Styles */
+.about {
+  padding: 60px 20px;
+  background: var(--background-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  /* animation: background-color-change 7s infinite; */
+}
+
+/* Background Image with Animation */
+.about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("./about.jpg") no-repeat center center;
+  /* background: #222222; */
+  background-size: cover;
+  filter: grayscale(100%);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* About Content Layout */
+.about-content {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 50px;
+}
+
+/* Text Styling */
+.about-text {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Heading Styles */
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  animation: color-change 7s infinite;
+}
+
+/* Paragraph Styles */
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Image Styling */
+.about-img img {
+  margin-top: 10px;
+  width: 250px;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid var(--border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  filter: grayscale(100%);
+}
+
+/* Ensure responsiveness */
+@media screen and (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-img img {
+    width: 200px;
+  }
+  .about-text-2 {
+    order: calc(-1);
+  }
+}
+
+.about-list ul li {
+  list-style: none;
+  color: var(--text-color);
+}
+
+/* General Styling for Projects Section */
+.projects {
+  background: #222222; /* Dark gray background */
+  color: #e0e0e0; /* Light gray text */
+  padding: 60px 0;
+  font-family: "Georgia", serif;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Section Title */
+.section-title {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  animation: color-change 7s infinite;
+}
+
+/* Project List */
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Individual Project Item */
+.project-item {
+  background: #333333; /* Slightly lighter gray background for each project item */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.project-title {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: var(--link-hover-color);
+  text-transform: uppercase;
+}
+
+.project-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .project-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* General Styling for Footer */
+
+/* General Styling for Footer */
+.footer {
+  background: #1a1a1a; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  padding: 40px 20px;
+  font-family: "Georgia", serif;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #333;
+}
+
+.container-1 {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  gap: 40px;
+}
+
+.contact-info,
+.social-links {
+  flex: 1;
+}
+
+.contact-info h3,
+.social-links h3 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.contact-info p,
+.social-links p {
+  margin: 10px 0;
+}
+
+.contact-info a,
+.social-links a {
+  color: var(--link-hover-color);
+  text-decoration: none;
+}
+
+.contact-info a:hover,
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-links {
+  text-align: center;
+}
+
+.social-links h3 {
+  margin-bottom: 20px;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icon {
+  color: #e0e0e0;
+  font-size: 24px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  color: var(--primary-color);
+  transform: scale(1.2);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-bottom p {
+  font-size: 0.9em;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
